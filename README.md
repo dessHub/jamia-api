@@ -47,14 +47,21 @@
 # Contribution 
 
    If you will like to contribute to this project , you should follow the following github best practices.
+   
    ### Steps
    1. Fork the project to your github account .
    2. Clone to your local machine.
+   
    `git clone https://github.com/<your-username>/jamia-api.git`
+   
    3. Inside project directory change to `develop` branch.
+   
    `git checkout develop`
+   
    4. Create a new branch from develop branch following below github best practices.
+   
    `git checkout ft-admin-dashboard`
+   
    5. Push the your github account and create `pull request` to this repository `develop` branch.
    
 # Github Best Practices    
