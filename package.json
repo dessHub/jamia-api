@@ -1,0 +1,47 @@
+{
+  "name": "jamia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "nyc --reporter=html --reporter=text mocha test/ --timeout 10000",
+    "start": "node server.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "keywords": [],
+  "author": "desshub95@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.227.1",
+    "bcrypt-nodejs": "latest",
+    "body-parser": "^1.18.2",
+    "connect-flash": "~0.1.1",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
+    "dotenv": "^5.0.1",
+    "ejs": "~2.5.2",
+    "email-templates": "^3.6.0",
+    "email-templates-v2": "^2.0.3",
+    "express": "^4.16.3",
+    "express-mailer": "^0.3.1",
+    "express-session": "~1.14.1",
+    "faker": "^4.1.0",
+    "method-override": "~2.3.6",
+    "moment": "^2.22.1",
+    "mongoose": "^5.0.11",
+    "morgan": "^1.9.0",
+    "nodemailer": "^4.6.4",
+    "passport": "~0.3.2",
+    "passport-local": "~1.0.0",
+    "path": "^0.12.7",
+    "promise": "^8.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "coveralls": "^3.0.0",
+    "mocha": "^2.4.5",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nyc": "^11.6.0"
+  }
+}
