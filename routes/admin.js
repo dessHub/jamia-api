@@ -3,35 +3,35 @@ const app = express.Router();
 const controller = require('../controllers/admin/index');
 
 
-app.get('/', isLoggedIn, isAdmin, (req, res) => {
+app.get('/', (req, res) => {
     controller.index(req, res);
 })
 
-app.get('/articles', isLoggedIn,isAdmin, (req, res) => {
+app.get('/articles',  (req, res) => {
     controller.articles(req, res);
 })
 
-app.get('/article/create', isLoggedIn,isAdmin, (req, res) => {
+app.get('/addarticle', (req, res) => {
     controller.getCreate(req, res);
 })
 
-app.post('/create', isLoggedIn,isAdmin, (req, res) => {
+app.post('/create', (req, res) => {
     controller.addArticle(req, res);
 })
 
-app.get('/article:id', isLoggedIn,isAdmin, (req, res) => {
+app.get('/article/:id', (req, res) => {
     controller.getArticle(req, res);
 })
 
-app.get('/edit_article:id', isLoggedIn,isAdmin, (req, res) => {
+app.get('/edit_article:id',  (req, res) => {
     controller.getEdit(req, res);
 })
 
-app.post('/edit_article', isLoggedIn,isAdmin, (req, res) => {
+app.post('/edit_article', (req, res) => {
     controller.postEdit(req, res);
 })
 
-app.get('/publish_article:id', isLoggedIn,isAdmin, (req, res) => {
+app.get('/publish_article:id', (req, res) => {
     controller.publish(req, res);
 })
 
@@ -41,6 +41,18 @@ app.get('/cancel_article:id', isLoggedIn,isAdmin, (req, res) => {
 
 app.get('/delete_article:id', isLoggedIn,isAdmin, (req, res) => {
     controller.remove(req, res);
+})
+
+app.get('/calendar',  (req, res) => {
+    controller.calendar(req, res);
+})
+
+app.get('/addcalendar',  (req, res) => {
+    controller.getCalendar(req, res);
+})
+
+app.post('/calendar', (req, res) => {
+    controller.addCalendar(req, res);
 })
 
 app.get('/role:email/:role', isLoggedIn, isAdmin, (req, res) => {
@@ -58,7 +70,7 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
 
-    // if they aren't redirect them to the home page
+    // if they aren't redirect them to the login page
     res.redirect('/auth/login');
 }
 
@@ -68,7 +80,7 @@ function isAdmin(req, res, next) {
       return next();
     }
 
-    res.redirect('/');
+    res.redirect('/auth/login');
   }
 
 

@@ -14,23 +14,15 @@ const express = require('express'),
     app.get('/login', (req, res) => {
             console.log('receiving')
         // render the page and pass in any flash data if it exists
-        res.json({ message: req.flash('loginMessage') });
+        res.render('login.ejs', { message: req.flash('loginMessage') });
     });
 
         // process the mobile login form
     app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/auth/profile', // redirect to the secure profile section
-        failureRedirect : '/auth/faillogin', // redirect back to the signup page if there is an error
+        failureRedirect : '/auth/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
-
-    app.get('/faillogin', (req, res) => {
-        res.json({
-                status: "fail",
-                message: req.flash('loginMessage')
-               
-            })
-    })
     
     // =====================================
     // SIGNUP ==============================
@@ -44,7 +36,7 @@ const express = require('express'),
 
     // process the mobile signup form
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/auth/profile', // redirect to the secure profile section
+        successRedirect : '/admin', // redirect to the secure profile section
         failureRedirect : '/auth/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
@@ -52,15 +44,6 @@ const express = require('express'),
     // =====================================
     // PROFILE SECTION =====================
     // =====================================
-    // we will want this protected so you have to be logged in to visit
-    // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile', isLoggedIn, (req, res) => {
-        res.json({
-            status: "Success",
-            message: req.flash('loginMessage')
-             // get the user out of session and pass to template
-        });
-    });
 
     // =====================================
     // LOGOUT ==============================
@@ -82,7 +65,7 @@ const express = require('express'),
                 if(role == 'Admin'){
                   user.update({"role":role}, (err, user) => {
                     if(err) return(err)
-                      res.redirect('/');
+                      res.redirect('/admin');
                   });
                 }
               }else{
@@ -101,7 +84,7 @@ function isLoggedIn(req, res, next) {
         return next();
 
     // if they aren't redirect them to the home page
-    res.redirect('/');
+    res.redirect('/auth/login');
 }
 
 

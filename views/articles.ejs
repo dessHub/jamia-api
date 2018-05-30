@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <% include ./partials/head %>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <% include ./partials/sidebar %>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-files-o"></i> All Articles</h3>
+                    <ol class="breadcrumb">
+                      <li><i class="fa fa-home"></i><a href="/admin">Home</a></li>
+                      <li><i class="fa fa-files-o"></i>All Articles</li>
+                    </ol>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+              <!-- /.row -->
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="panel panel-default">
+                          <div class="panel-heading">
+                              <i class="fa fa-files-o fa-fw"></i> All Articles
+  
+                              <div class="pull-right">
+                                  <div class="btn-group">
+                                      <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                          Actions
+                                          <span class="caret"></span>
+                                      </button>
+                                      <ul class="dropdown-menu pull-right" role="menu">
+                                        <li><a href="/admin/addarticle">Add Article</a>
+                                        </li>
+                                          <li><a href="#">Delete All</a>
+                                          </li>
+                                      </ul>
+                                  </div>
+                              </div>
+  
+                              <div class="pull-right">
+                                  <div class="btn-group">
+                                      <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                          Category
+                                          <span class="caret"></span>
+                                      </button>
+                                      <ul class="dropdown-menu pull-right" role="menu">
+                                        <li><a href="#">Editorial</a>
+                                        </li>
+                                          <li><a href="#">Dawa</a>
+                                          </li>
+                                          <li><a href="#">Youth</a>
+                                          </li>
+                                          <li><a href="#">Women</a>
+                                          </li>
+                                          <li><a href="#">News</a>
+                                          </li>
+                                      </ul>
+                                  </div>
+                              </div>
+  
+                          </div>
+                          <!-- /.panel-heading -->
+                          <div class="panel-body">
+                              <div class="row">
+                                  <div class="col-lg-12">
+                                  <div class="list-group">
+                                      <% for(let i=0; i<articles.length; i++) { %>
+                                    <div class="list-group-item">
+                                      <h3><%= articles[i].title %></h3>
+                                      <%- articles[i].content %>
+                                      <i class="text-muted">By Ali Shee</i>
+                                      <span class="pull-right"><i class="fa fa-clock-o"></i> 8:00pm</span>
+                                      <div style="margin-bottom:5px;">
+                                         <a href="/admin/article<%= articles[i].id %>" style="padding: 5px 5px;"> <i class="fa fa-eye"></i> View</a>
+  
+                                         <div class="btn-group pull-right">
+                                          <button class="btn btn-info" style="padding: 5px 5px;"> <i class="fa fa-edit"></i> Edit</button>
+                                          <button class="btn btn-warning" style="padding: 5px 5px;"> <i class="fa fa-trash"></i> Archive</button>
+                                          <button class="btn btn-danger" style="padding: 5px 5px;"> <i class="fa fa-trash"></i> Delete</button>
+                                          </div>
+  
+                                      </div>
+                                    </div>
+                                    <% } %>
+
+                                  </div>
+                                  </div>
+                                  <!-- /.col-lg-12 (nested) -->
+                              </div>
+                              <!-- /.row -->
+                          </div>
+                          <!-- /.panel-body -->
+                      </div>
+                  </div>
+                  <!-- /.col-lg-12 -->
+              </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+ <% include ./partials/footer.ejs %>
+
+</body>
+
+</html>

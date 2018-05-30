@@ -3,7 +3,7 @@ const app     = express.Router();
 
 const controller = require('../controllers/api/index');
 
-app.get('/articles:category', (req, res) => {
+app.get('/articles/:category', (req, res) => {
     controller.getArticles(req, res);
 })
 

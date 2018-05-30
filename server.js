@@ -37,7 +37,7 @@ const auth = require('./routes/authfile'); // load our routes and pass in our ap
 const admin = require('./routes/admin');
 const api  = require('./routes/api');
 app.use('/auth', auth);
-app.use('/api', api);
+app.use('/api/v1', api);
 app.use('/admin', admin);
 
 //test endpoint

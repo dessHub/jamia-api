@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <% include ./partials/head %>
+    <!-- word-like text editor link-->
+    <script type="text/javascript" src="../assets/js/niceEdit.js"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+          bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+    //]]>
+    </script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+         <% include ./partials/sidebar %>
+
+        <div id="page-wrapper">
+          <div class="row">
+              <div class="col-lg-12">
+                  <h3 class="page-header"><i class="fa fa-plus"></i> Add Article</h3>
+                  <ol class="breadcrumb">
+                    <li><i class="fa fa-home"></i><a href="/admin">Home</a></li>
+                    <li><i class="fa fa-plus"></i>Add Article</li>
+                  </ol>
+              </div>
+              <!-- /.col-lg-12 -->
+          </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-plus fa-fw"></i> Add Article
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                  <form method="post" action="/admin/create" style="padding:5px 10px 5px 10px;">
+                                     <div class="form-group">
+                                         <label>Title</label>
+                                         <input type="text" class="form-control" name="title" placeholder="Article Title" required data-validation-required-message="Please enter title.">
+                                     </div>
+                                     <div class="form-group">
+                                         <label>Category</label>
+                                         <select class="form-control" name="category">
+                                           <option value="Editorial">Editorial</option>
+                                           <option value="Dawa">Dawa</option>
+                                           <option value="Youth">Youth</option>
+                                           <option value="Women">Women</option>
+                                           <option value="News">News</option>
+                                         </select>
+                                     </div>
+                                     <div class="form-group">
+                                       <label>Content</label>
+                                       <textarea rows="8" class="form-control" name="content" placeholder="Write Content..."></textarea>
+                                     </div>
+                                     <br>
+                                     <div class="form-group">
+                                         <button type="submit" name="submit" class="btn btn-default">Publish</button>
+                                     </div>
+                                 </form>
+                                </div>
+                                <!-- /.col-lg-12 (nested) -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+ <% include ./partials/footer.ejs %>
+
+</body>
+
+</html>
