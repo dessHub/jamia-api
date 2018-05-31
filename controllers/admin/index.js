@@ -1,5 +1,6 @@
 const Article   = require('../../models/article');
 const User    = require('../../models/user');
+const Calendar    = require('../../models/calendar');
 const showdown  = require('showdown'),
     converter = new showdown.Converter();
 
@@ -25,7 +26,7 @@ controller.index = (req, res) => {
 }
 
 controller.articles = (req, res) => {
-
+     //let category = req.params.category;
     Article.find({}, (err, articles) => {
         if(err) throw err;
         
@@ -44,7 +45,8 @@ controller.addArticle = (req, res) => {
     let article       =  new Article();
     article.title =  req.body.title;
     article.category =  req.body.category;
-    article.content  =  converter.makeHtml(req.body.content);
+    article.banner =  req.body.avatar;
+    article.content  =  req.body.content;
     article.status  =  req.body.status;
     console.log(req.body.content)
     article.save((err, article) => {
@@ -52,7 +54,7 @@ controller.addArticle = (req, res) => {
             res.json(err);
         } else {
             
-        res.redirect("/admin/addarticle");
+        res.redirect("/admin/articles");
       }
     });
 }
@@ -74,9 +76,9 @@ controller.getCalendar = (req, res) => {
 controller.addCalendar = (req, res) => {
 
     let calendar       =  new Calendar();
-    calendar.year =  req.body.year;
-    calendar.calendar =  req.body.calendar;
-    article.status  =  req.body.status;
+    calendar.title =  req.body.title;
+    calendar.calendar =  req.body.avatar;
+    calendar.status  =  req.body.status;
     calendar.save((err, calendar) => {
         if(err){
             res.json(err);

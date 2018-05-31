@@ -52,12 +52,13 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
+                                    <% for(var i=0; i<calendar.length; i++) { %>
                                 <div class="list-group">
                                   <div class="list-group-item">
-                                    <h3>2018 Calendar</h3>
+                                    <h3><%= calendar[i].title %> </h3>
                                     <div style="margin-bottom:5px;">
                                        <a href="#" style="padding: 5px 5px;"> <i class="fa fa-eye"></i> View</a>
-
+                                       <iframe src="<%= calendar[i].calendar %>&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
                                        <div class="btn-group pull-right">
                                         <button class="btn btn-info" style="padding: 5px 5px;"> <i class="fa fa-edit"></i> Edit</button>
                                         <button class="btn btn-danger" style="padding: 5px 5px;"> <i class="fa fa-trash"></i> Delete</button>
@@ -65,6 +66,7 @@
 
                                     </div>
                                   </div>
+                                  <% } %>
 
                                   <div class="list-group-item">
                                     <h3>2017 Calendar</h3>

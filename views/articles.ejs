@@ -77,7 +77,8 @@
                                       <% for(let i=0; i<articles.length; i++) { %>
                                     <div class="list-group-item">
                                       <h3><%= articles[i].title %></h3>
-                                      <%- articles[i].content %>
+                                      <img src="<%= articles[i].banner %>">
+                                      <p><%= articles[i].content %></p>
                                       <i class="text-muted">By Ali Shee</i>
                                       <span class="pull-right"><i class="fa fa-clock-o"></i> 8:00pm</span>
                                       <div style="margin-bottom:5px;">

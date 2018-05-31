@@ -5,8 +5,8 @@ var mongoose = require('mongoose');
 var articleSchema = mongoose.Schema({
       title        : String,
       content    : String,
+      banner    : String,
       category        : String,
-      date        : String,
       status       : String
 
 }, {

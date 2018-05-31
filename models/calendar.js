@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 // define the schema for our event model
 var calendarSchema = mongoose.Schema({
-      year        : String,
+      title       : String,
       calendar    : String,
       status      : String
 

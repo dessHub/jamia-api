@@ -12,7 +12,7 @@
   "author": "desshub95@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.227.1",
+    "aws-sdk": "^2.249.1",
     "bcrypt-nodejs": "latest",
     "body-parser": "^1.18.2",
     "connect-flash": "~0.1.1",
