@@ -29,8 +29,18 @@ controller.articles = (req, res) => {
      //let category = req.params.category;
     Article.find({}, (err, articles) => {
         if(err) throw err;
-        
-        res.render('articles', {articles:articles});
+        let r = articles.reverse();
+        res.render('articles', {articles:r, category:"All Articles"});
+    })
+
+}
+
+controller.getArticles = (req, res) => {
+     let category = req.params.category;
+    Article.find({"category":category}, (err, articles) => {
+        if(err) throw err;
+        let r = articles.reverse();
+        res.render('articles', {articles:r, category:category});
     })
 
 }
@@ -58,6 +68,101 @@ controller.addArticle = (req, res) => {
       }
     });
 }
+
+controller.getArticle = (req, res) => {
+     let id = req.params.id;
+    Article.findById(id, (err, article) => {
+        if(err) throw err;
+        
+        res.render('article', {article:article});
+    })
+
+}
+
+controller.getEdit = (req, res) => {
+     let id = req.params.id;
+    Article.findById(id, (err, article) => {
+        if(err) throw err;
+        
+        res.render('e_article', {article:article});
+    })
+
+}
+
+controller.postEdit = (req, res) => {
+    let id = req.body.article_id;
+    Article.findById(id, (err, article)=>{
+        if(err) throw err;
+        article.title =  req.body.title;
+        article.content  =  req.body.content;
+        article.banner = req.body.avatar
+        article.status = article.status;
+        article.save((err) => {
+        if(err) throw err;
+        let red_to = "/admin/article" + id ;
+        res.redirect(red_to);     
+         })
+     })
+}
+
+controller.remove = (req, res) => {
+    let id = req.params.id;
+    console.log(id);
+    Article.remove({_id: id}, (err) => {
+        
+        res.redirect('/admin/articles');
+    })
+}
+
+controller.getadmins = (req, res) => {
+    User.find({}, (err, users) => {
+        if(err) throw err;
+        
+        res.render('admins', {users:users});
+    })
+}
+
+controller.addadmin = (req, res) => {
+
+   res.render('addadmin', { message: req.flash('signupMessage') });
+}
+
+controller.postadmin = (req, res) => {
+    let email = req.body.email;
+
+    User.findOne({"email":email}, (err, user)=>{
+        // if there are any errors, return the error
+        if (err)
+           return done(err);
+   
+        // check to see if theres already a user with that email
+        if (user) {
+            res.render('addadmin.ejs', { message: req.flash('signupMessage', 'That email is already taken.') });
+        } else {
+            let newUser            = new User(); 
+            newUser.name =  req.body.name;
+            newUser.phone  =  req.body.phone;
+            newUser.email  =  req.body.email;
+            newUser.role = "Admin"
+            newUser.password = newUser.generateHash(req.body.password);
+            newUser.save((err) => {
+            if(err) throw err;
+            let red_to = "/admin/admins";
+            res.redirect(red_to);     
+            })
+        }
+    })
+}
+
+controller.removeadmin = (req, res) => {
+    let id = req.params.id;
+    console.log(id);
+    User.remove({_id: id}, (err) => {
+        
+        res.redirect('/admin/admins');
+    })
+}
+
 
 controller.calendar = (req, res) => {
    Calendar.find({}, (err, calendar) => {

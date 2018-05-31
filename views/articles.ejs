@@ -30,7 +30,7 @@
                   <div class="col-lg-12">
                       <div class="panel panel-default">
                           <div class="panel-heading">
-                              <i class="fa fa-files-o fa-fw"></i> All Articles
+                              <i class="fa fa-files-o fa-fw"></i> <%= category %>
   
                               <div class="pull-right">
                                   <div class="btn-group">
@@ -54,15 +54,15 @@
                                           <span class="caret"></span>
                                       </button>
                                       <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Editorial</a>
+                                        <li><a href="/admin/articlesEditorial">Editorial</a>
                                         </li>
-                                          <li><a href="#">Dawa</a>
+                                          <li><a href="/admin/articlesDawa">Dawa</a>
                                           </li>
-                                          <li><a href="#">Youth</a>
+                                          <li><a href="/admin/articlesYouth">Youth</a>
                                           </li>
-                                          <li><a href="#">Women</a>
+                                          <li><a href="/admin/articlesWomen">Women</a>
                                           </li>
-                                          <li><a href="#">News</a>
+                                          <li><a href="/admin/articlesNews">News</a>
                                           </li>
                                       </ul>
                                   </div>
@@ -85,9 +85,9 @@
                                          <a href="/admin/article<%= articles[i].id %>" style="padding: 5px 5px;"> <i class="fa fa-eye"></i> View</a>
   
                                          <div class="btn-group pull-right">
-                                          <button class="btn btn-info" style="padding: 5px 5px;"> <i class="fa fa-edit"></i> Edit</button>
-                                          <button class="btn btn-warning" style="padding: 5px 5px;"> <i class="fa fa-trash"></i> Archive</button>
-                                          <button class="btn btn-danger" style="padding: 5px 5px;"> <i class="fa fa-trash"></i> Delete</button>
+                                          <a href="/admin/edit_article<%= articles[i].id %>"><button class="btn btn-info" style="padding: 5px 5px;"> <i class="fa fa-edit"></i> Edit</button></a>
+                                          <a href="/admin/archive_article<%= articles[i].id %>"><button class="btn btn-warning" style="padding: 5px 5px;"> <i class="fa fa-trash"></i> Archive</button></a>
+                                          <a href="/admin/delete_article<%= articles[i].id %>"><button class="btn btn-danger" style="padding: 5px 5px;"> <i class="fa fa-trash"></i> Delete</button></a>
                                           </div>
   
                                       </div>

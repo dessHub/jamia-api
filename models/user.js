@@ -9,6 +9,8 @@ var userSchema = mongoose.Schema({
         type: String,
         index: true
     },
+    name         : String,
+    phone        : String,
     role         : String,
     password     : String
     

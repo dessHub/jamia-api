@@ -22,6 +22,10 @@ app.get('/articles',  (req, res) => {
     controller.articles(req, res);
 })
 
+app.get('/articles:category',  (req, res) => {
+    controller.getArticles(req, res);
+})
+
 app.get('/addarticle', (req, res) => {
     controller.getCreate(req, res);
 })
@@ -30,7 +34,7 @@ app.post('/create', (req, res) => {
     controller.addArticle(req, res);
 })
 
-app.get('/article/:id', (req, res) => {
+app.get('/article:id', (req, res) => {
     controller.getArticle(req, res);
 })
 
@@ -50,7 +54,7 @@ app.get('/cancel_article:id', isLoggedIn,isAdmin, (req, res) => {
     controller.cancel(req, res);
 })
 
-app.get('/delete_article:id', isLoggedIn,isAdmin, (req, res) => {
+app.get('/delete_article:id', (req, res) => {
     controller.remove(req, res);
 })
 
@@ -66,12 +70,24 @@ app.post('/calendar', (req, res) => {
     controller.addCalendar(req, res);
 })
 
-app.get('/role:email/:role', isLoggedIn, isAdmin, (req, res) => {
+app.get('/admins', (req, res) => {
+    controller.getadmins(req, res);
+})
+
+app.get('/addadmin', (req, res) => {
+    controller.addadmin(req, res);
+})
+
+app.post('/addadmin', (req, res) => {
+    controller.postadmin(req, res);
+})
+
+app.get('/role:email/:role', (req, res) => {
     controller.changerole(req, res);
 })
 
-app.get('/user_remove:id', isLoggedIn, isAdmin, (req, res) => {
-    controller.userremove(req, res);
+app.get('/removeadmin/:id', (req, res) => {
+    controller.removeadmin(req, res);
 })
 
 app.get('/sign-s3', (req, res) => {
