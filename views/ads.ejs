@@ -17,10 +17,10 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-files-o"></i> All Articles</h3>
+                    <h3 class="page-header"><i class="fa fa-files-o"></i> All Ads</h3>
                     <ol class="breadcrumb">
                       <li><i class="fa fa-home"></i><a href="/admin">Home</a></li>
-                      <li><i class="fa fa-files-o"></i>All Articles</li>
+                      <li><i class="fa fa-files-o"></i>All Ads</li>
                     </ol>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -30,7 +30,7 @@
                   <div class="col-lg-12">
                       <div class="panel panel-default">
                           <div class="panel-heading">
-                              <i class="fa fa-files-o fa-fw"></i> <%= category %>
+                              <i class="fa fa-files-o fa-fw"></i> Ads
   
                               <div class="pull-right">
                                   <div class="btn-group">
@@ -39,30 +39,9 @@
                                           <span class="caret"></span>
                                       </button>
                                       <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="/admin/addarticle">Add Article</a>
+                                        <li><a href="/admin/createad">Create Ad</a>
                                         </li>
                                           <li><a href="#">Delete All</a>
-                                          </li>
-                                      </ul>
-                                  </div>
-                              </div>
-  
-                              <div class="pull-right">
-                                  <div class="btn-group">
-                                      <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                          Category
-                                          <span class="caret"></span>
-                                      </button>
-                                      <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="/admin/articlesEditorial">Editorial</a>
-                                        </li>
-                                          <li><a href="/admin/articlesDawa">Dawa</a>
-                                          </li>
-                                          <li><a href="/admin/articlesYouth">Youth</a>
-                                          </li>
-                                          <li><a href="/admin/articlesWomen">Women</a>
-                                          </li>
-                                          <li><a href="/admin/articlesNews">News</a>
                                           </li>
                                       </ul>
                                   </div>
@@ -74,19 +53,20 @@
                               <div class="row">
                                   <div class="col-lg-12">
                                   <div class="list-group">
-                                      <% for(let i=0; i<articles.length; i++) { %>
-                                    <div class="list-group-item">
-                                      <h3><%= articles[i].title %></h3>
-                                      <p><%= articles[i].content %>............</p>
-                                      <i class="text-muted">By Ali Shee</i>
+                                      <% for(let i=0; i<ads.length; i++) { %>
+                                    <div class="list-group-item" style="margin: 10px;">
+                                      <h3><%= ads[i].owner %></h3>
+                                      
+                                      <img src="<%= ads[i].ad %>" class="" style="height:100px; width: auto">
+                                      <p><%= ads[i].content %></p>
                                       
                                       <div style="margin-bottom:5px;">
-                                         <a href="/admin/article<%= articles[i].id %>" style="padding: 5px 5px;"> <i class="fa fa-eye"></i> View</a>
+                                        <span style="padding: 5px 5px;"> Status: <strong><%= ads[i].status %></strong></span>
+                                        <span style="padding: 5px 5px;"> Position: <strong><%= ads[i].position %></strong></span> 
   
                                          <div class="btn-group pull-right">
-                                          <a href="/admin/edit_article<%= articles[i].id %>"><button class="btn btn-info" style="padding: 5px 5px;"> <i class="fa fa-edit"></i> Edit</button></a>
-                                          <a href="/admin/archive_article<%= articles[i].id %>"><button class="btn btn-warning" style="padding: 5px 5px;"> <i class="fa fa-trash"></i> Archive</button></a>
-                                          <a href="/admin/delete_article<%= articles[i].id %>"><button class="btn btn-danger" style="padding: 5px 5px;"> <i class="fa fa-trash"></i> Delete</button></a>
+                                          <a href="/admin/edit_ad<%= ads[i].id %>"><button class="btn btn-info" style="padding: 5px 5px;"> <i class="fa fa-edit"></i> Edit</button></a>
+                                          <a href="/admin/delete_ad<%= ads[i].id %>"><button class="btn btn-danger" style="padding: 5px 5px;"> <i class="fa fa-trash"></i> Delete</button></a>
                                           </div>
   
                                       </div>

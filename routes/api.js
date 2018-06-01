@@ -7,6 +7,10 @@ app.get('/articles/:category', (req, res) => {
     controller.getArticles(req, res);
 })
 
+app.get('/ads', (req, res) => {
+    controller.getAds(req, res);
+})
+
 app.get('/calendar', (req, res) => {
     controller.getCalendar(req, res);
 })

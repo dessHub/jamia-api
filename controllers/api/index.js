@@ -1,5 +1,6 @@
 const Article   = require('../../models/article');
 const User    = require('../../models/user');
+const Ad    = require('../../models/ad');
 const calendar    = require('../../models/calendar');
 const ejs = require('ejs');
 const path           = require('path');
@@ -16,6 +17,20 @@ controller.getArticles = (req, res) => {
             });
         }else{
             let r = articles.reverse();
+        res.json(r);
+        }
+      });
+}
+
+controller.getAds = (req, res) => {
+    Ad.find({}, (error, ads) => {
+        if(error){
+            res.status(200).json({
+                status: "Error",
+                message: error
+            });
+        }else{
+            let r = ads.reverse();
         res.json(r);
         }
       });

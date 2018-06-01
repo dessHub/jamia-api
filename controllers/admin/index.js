@@ -1,6 +1,7 @@
 const Article   = require('../../models/article');
 const User    = require('../../models/user');
 const Calendar    = require('../../models/calendar');
+const Ad    = require('../../models/ad');
 const showdown  = require('showdown'),
     converter = new showdown.Converter();
 
@@ -30,7 +31,19 @@ controller.articles = (req, res) => {
     Article.find({}, (err, articles) => {
         if(err) throw err;
         let r = articles.reverse();
-        res.render('articles', {articles:r, category:"All Articles"});
+        console.log(articles)
+        var c = [];
+        for(let i=0; i<articles.length; i++){
+            
+            let ar = {}
+            ar.id = articles[i].id;
+            ar.title = articles[i].title;
+            ar.content = articles[i].content.substring(0, 280);
+            c.push(ar);
+            
+        }
+        console.log(c)
+        res.render('articles', {articles:c, category:"All Articles"});
     })
 
 }
@@ -40,6 +53,7 @@ controller.getArticles = (req, res) => {
     Article.find({"category":category}, (err, articles) => {
         if(err) throw err;
         let r = articles.reverse();
+
         res.render('articles', {articles:r, category:category});
     })
 
@@ -192,6 +206,75 @@ controller.addCalendar = (req, res) => {
         res.redirect("/admin/calendar");
       }
     });
+}
+
+controller.getAds = (req, res) => {
+    Ad.find({}, (err, ads) => {
+        if(err) throw err;
+        let r = ads.reverse();
+
+        res.render('ads', {ads:r});
+    })
+
+}
+
+controller.getcreatead = (req, res) => {
+
+   res.render('createad');
+}
+
+controller.addAd = (req, res) => {
+
+    let ad       =  new Ad();
+    ad.owner =  req.body.owner;
+    ad.position =  "Unasign";
+    ad.ad =  req.body.avatar;
+    ad.content  =  req.body.content;
+    ad.status  =  "Not Active";
+    ad.save((err, ad) => {
+        if(err){
+            res.json(err);
+        } else {
+            
+        res.redirect("/admin/ads");
+      }
+    });
+}
+
+controller.getEditAd = (req, res) => {
+     let id = req.params.id;
+    Ad.findById(id, (err, ad) => {
+        if(err) throw err;
+        
+        res.render('ead', {ad:ad});
+    })
+
+}
+
+controller.postEditAd = (req, res) => {
+    let id = req.body.ad_id;
+    Article.findById(id, (err, article)=>{
+        if(err) throw err;
+        ad.owner =  req.body.owner;
+        ad.position =  "Unasign";
+        ad.ad =  req.body.avatar;
+        ad.content  =  req.body.content;
+        ad.status  =  "Not Active";
+        ad.save((err) => {
+        if(err) throw err;
+        let red_to = "/admin/ads" ;
+        res.redirect(red_to);     
+         })
+     })
+}
+
+controller.removead = (req, res) => {
+    let id = req.params.id;
+    console.log(id);
+    Ad.remove({_id: id}, (err) => {
+        
+        res.redirect('/admin/ads');
+    })
 }
 
 module.exports = controller;

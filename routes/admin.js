@@ -90,6 +90,30 @@ app.get('/removeadmin/:id', (req, res) => {
     controller.removeadmin(req, res);
 })
 
+app.get('/ads', (req, res) => {
+    controller.getAds(req, res);
+})
+
+app.get('/createad', (req, res) => {
+    controller.getcreatead(req, res);
+})
+
+app.post('/createad', (req, res) => {
+    controller.addAd(req, res);
+})
+
+app.get('/edit_ad:id',  (req, res) => {
+    controller.getEditAd(req, res);
+})
+
+app.post('/edit_ad', (req, res) => {
+    controller.postEditAd(req, res);
+})
+
+app.get('/removead/:id', (req, res) => {
+    controller.removead(req, res);
+})
+
 app.get('/sign-s3', (req, res) => {
     const s3 = new aws.S3();
     const fileName = req.query['file-name'];
