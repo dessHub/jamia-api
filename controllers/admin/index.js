@@ -253,7 +253,7 @@ controller.getEditAd = (req, res) => {
 
 controller.postEditAd = (req, res) => {
     let id = req.body.ad_id;
-    Article.findById(id, (err, article)=>{
+    Ad.findById(id, (err, ad)=>{
         if(err) throw err;
         ad.owner =  req.body.owner;
         ad.position =  "Unasign";
