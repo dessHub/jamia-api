@@ -2,6 +2,7 @@ const Article   = require('../../models/article');
 const User    = require('../../models/user');
 const Calendar    = require('../../models/calendar');
 const Ad    = require('../../models/ad');
+const Term    = require('../../models/term');
 const showdown  = require('showdown'),
     converter = new showdown.Converter();
 
@@ -53,8 +54,18 @@ controller.getArticles = (req, res) => {
     Article.find({"category":category}, (err, articles) => {
         if(err) throw err;
         let r = articles.reverse();
+        var c = [];
+        for(let i=0; i<articles.length; i++){
+            
+            let ar = {}
+            ar.id = articles[i].id;
+            ar.title = articles[i].title;
+            ar.content = articles[i].content.substring(0, 280);
+            c.push(ar);
+            
+        }
 
-        res.render('articles', {articles:r, category:category});
+        res.render('articles', {articles:c, category:category});
     })
 
 }
@@ -274,6 +285,69 @@ controller.removead = (req, res) => {
     Ad.remove({_id: id}, (err) => {
         
         res.redirect('/admin/ads');
+    })
+}
+
+controller.getterms = (req, res) => {
+    Term.find({}, (err, terms) => {
+        if(err) throw err;
+        let r = terms.reverse();
+
+        res.render('terms', {terms:r});
+    })
+
+}
+
+controller.getcreateterm = (req, res) => {
+
+   res.render('addterms');
+}
+
+controller.addterm = (req, res) => {
+
+    let term       =  new Term();
+    term.title =  req.body.title;
+    term.content =  req.body.content;
+    term.save((err, term) => {
+        if(err){
+            res.json(err);
+        } else {
+            
+        res.redirect("/admin/terms");
+      }
+    });
+}
+
+controller.getEditTerm = (req, res) => {
+     let id = req.params.id;
+    Term.findById(id, (err, term) => {
+        if(err) throw err;
+        console.log(term)
+        res.render('e_terms', {term:term});
+    })
+
+}
+
+controller.postEditTerm = (req, res) => {
+    let id = req.body.term_id;
+    Term.findById(id, (err, term)=>{
+        if(err) throw err;
+        term.title =  req.body.title;
+        term.content =  req.body.content;
+        term.save((err) => {
+        if(err) throw err;
+        let red_to = "/admin/terms" ;
+        res.redirect(red_to);     
+         })
+     })
+}
+
+controller.removeterm = (req, res) => {
+    let id = req.params.id;
+    console.log(id);
+    Term.remove({_id: id}, (err) => {
+        
+        res.redirect('/admin/terms');
     })
 }
 

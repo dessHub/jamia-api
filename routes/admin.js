@@ -114,6 +114,30 @@ app.get('/removead/:id', (req, res) => {
     controller.removead(req, res);
 })
 
+app.get('/terms', (req, res) => {
+    controller.getterms(req, res);
+})
+
+app.get('/addterms', (req, res) => {
+    controller.getcreateterm(req, res);
+})
+
+app.post('/addterms', (req, res) => {
+    controller.addterm(req, res);
+})
+
+app.get('/edit_term:id',  (req, res) => {
+    controller.getEditTerm(req, res);
+})
+
+app.post('/edit_term', (req, res) => {
+    controller.postEditTerm(req, res);
+})
+
+app.get('/delete_term:id', (req, res) => {
+    controller.removeterm(req, res);
+})
+
 app.get('/sign-s3', (req, res) => {
     const s3 = new aws.S3();
     const fileName = req.query['file-name'];

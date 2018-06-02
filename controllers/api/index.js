@@ -2,6 +2,7 @@ const Article   = require('../../models/article');
 const User    = require('../../models/user');
 const Ad    = require('../../models/ad');
 const calendar    = require('../../models/calendar');
+const Term    = require('../../models/term');
 const ejs = require('ejs');
 const path           = require('path');
 
@@ -35,6 +36,21 @@ controller.getAds = (req, res) => {
         }
       });
 }
+
+controller.getTerms = (req, res) => {
+    Term.find({}, (error, terms) => {
+        if(error){
+            res.status(200).json({
+                status: "Error",
+                message: error
+            });
+        }else{
+            let r = terms.reverse();
+        res.json(r);
+        }
+      });
+}
+
 
 controller.getCalendar = (req, res) => {
     Calender.find({"status":"Active"}, (error, calendar) => {
