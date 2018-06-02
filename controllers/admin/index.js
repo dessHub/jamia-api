@@ -10,7 +10,7 @@ let controller = {};
 
 controller.index = (req, res) => {
 
-    Article.count({"status":"Active"}, (err, active) => {
+    Ad.count({}, (err, ads) => {
         if(err) throw err;
 
         Article.count({}, (err, past) => {
@@ -19,7 +19,7 @@ controller.index = (req, res) => {
                 User.count({}, (err, users) => {
                     if(err) throw err;
     
-                    res.render('index', {active:active,users:users,articles:past}); 
+                    res.render('index', {ads:ads,users:users,articles:past}); 
                 }) 
         })  
     })
@@ -229,7 +229,7 @@ controller.addAd = (req, res) => {
     ad.owner =  req.body.owner;
     ad.position =  "Unasign";
     ad.ad =  req.body.avatar;
-    ad.content  =  req.body.content;
+    ad.link  =  req.body.link;
     ad.status  =  "Not Active";
     ad.save((err, ad) => {
         if(err){
@@ -258,7 +258,7 @@ controller.postEditAd = (req, res) => {
         ad.owner =  req.body.owner;
         ad.position =  "Unasign";
         ad.ad =  req.body.avatar;
-        ad.content  =  req.body.content;
+        ad.link  =  req.body.link;
         ad.status  =  "Not Active";
         ad.save((err) => {
         if(err) throw err;

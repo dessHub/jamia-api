@@ -53,8 +53,8 @@
                                         <img class="img img-responsive img-thumbnail" style="margin: 5px; width:auto;height: 200px;display:block;overflow:hidden;"  id="preview" src="<%= ad.ad %>">
                                       </div>
                                      <div class="form-group">
-                                       <label>Content</label>
-                                       <textarea rows="8" class="form-control" name="content" placeholder="Write Content..."><%= ad.content %></textarea>
+                                      <label>Ad Link</label>
+                                      <input type="url" class="form-control" name="link" value="<%= ad.link %>" placeholder="Enter Valid Url (should begin with http ot https)" required pattern="https?://.+">
                                      </div>
                                      <br>
                                      <div class="form-group">
